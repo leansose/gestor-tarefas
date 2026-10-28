@@ -1,6 +1,6 @@
 import type { Task } from "./types";
 
-const tasks: Task[] = [
+export const tasks: Task[] = [
     {
         id: "TK-01",
         title: "Rehearsal",
