@@ -1,9 +1,17 @@
-import { tasks as initialTasks} from "./utils/data"
+import { tasks as initialTasks } from "./utils/data"
 import { useState } from "react"
 
 function App() {
-  
+
   const [tasks, setTasks] = useState(initialTasks)
+
+  const toggleTask = (id: string) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
+      )
+    )
+  }
 
   return (
     <>
@@ -11,7 +19,12 @@ function App() {
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>
-            Tarefa: {task.title} - Estado: {task.isCompleted ? "Completo" : "Pendente"}
+            <input
+              type="checkbox"
+              checked={task.isCompleted}
+              onChange={() => toggleTask(task.id)}
+            />
+            {task.title} - {task.isCompleted ? "Completo" : "Pendente"}
           </li>
         ))}
       </ul>
