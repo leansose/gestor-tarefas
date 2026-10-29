@@ -1,5 +1,6 @@
 import { tasks as initialTasks } from "./utils/data"
 import { useState } from "react"
+import TaskList from "./components/TaskList"
 
 function App() {
 
@@ -20,20 +21,7 @@ function App() {
   return (
     <>
       <h1 className="text-3xl font-bold text-blue-600">Gestor de Tarefas</h1>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <input
-              type="checkbox" className="cursor-pointer"
-              checked={task.isCompleted}
-              onChange={() => toggleTask(task.id)}
-            />
-            {task.title} - {task.isCompleted ? "Completo" : "Pendente"} | <button type="button" className="cursor-pointer" onClick={() => removeTask(task.id)}>
-              delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      <TaskList tasks={tasks} toggleTask={toggleTask} removeTask={removeTask}/>
     </>
   )
 }
